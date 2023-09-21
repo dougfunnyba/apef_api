@@ -8,7 +8,4 @@ class HomeController():
                description="Seleção de documentação: Swagger, Redoc ou RapiDoc")
     
     def home(self):
-        """ Redireciona para /openapi, tela que permite a escolha do estilo 
-            de documentação.
-        """
         return '/openapi'

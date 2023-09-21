@@ -15,10 +15,6 @@ class DoctorController():
         )
     
     def add_doctor(self, form):
-        """Adiciona um novo médico à base de dados
-
-            Retorna uma representação do médico inserido.
-        """
         doctor = Doctor(name=form.name)
         try:
             # chamando o repository para salvar o médico no banco de dados
@@ -36,9 +32,5 @@ class DoctorController():
             return {"mesage": error_msg}, 400
         
     def get_doctors(self):
-        """Faz a busca por todos os médicos cadastrados
-
-        Retorna uma representação da listagem dos médicos.
-        """
         # chamando o repository para buscar os médicos cadastrados no banco de dados
         return self.__doctor_repository.get_doctors(Doctor)

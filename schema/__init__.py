@@ -2,7 +2,9 @@ from schema.scheduling_schema import SchedulingSchema
 from schema.scheduling_schema import SearchSchedulingByPatientNameSchema
 from schema.doctor_schema import DoctorSchema, DoctorViewSchema, ListDoctorsSchema
 from schema.aesthetic_procedures_schema import AestheticProceduresSchema, ListAestheticProcedureSchema, AestheticProcedureViewSchema
-from schema.scheduling_schema import SchedulingSchema, SchedulingViewSchema, ListSchedulingSchema
+from schema.scheduling_schema import SchedulingSchema, SchedulingViewSchema
+from schema.scheduling_schema import  ListSchedulingSchema, SchedulingDelSchema
+from schema.scheduling_schema import  SchedulingSearchByIdSchema, SchedulingSearchByDateSchema
 from schema.error_schema import ErrorSchema
 
 from schema.doctor_schema import view_doctor, view_doctors

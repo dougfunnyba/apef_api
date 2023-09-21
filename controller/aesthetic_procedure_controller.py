@@ -16,10 +16,6 @@ class AestheticProceduresController():
         )
     
     def add_aesthetic_procedure(self, form):
-        """Adiciona um novo procedimento Estético à base de dados
-
-            Retorna uma representação do procedimento Estético inserido.
-        """
         aesthetic_procedure = AestheticProcedures(name=form.name, description=form.description)
         try:
             # chamando o repository para salvar o médico no banco de dados
@@ -37,9 +33,5 @@ class AestheticProceduresController():
             return {"mesage": error_msg}, 400
         
     def get_aesthetic_procedures(self):
-        """Faz a busca por todos os procedimentos estéticos cadastrados
-
-        Retorna uma representação da listagem dos procedimentos estéticos.
-        """
         # chamando o repository para buscar os procedimentos estéticos cadastrados no banco de dados
         return self.__aesthetic_procedure_repository.get_aesthetic_procedures(AestheticProcedures)

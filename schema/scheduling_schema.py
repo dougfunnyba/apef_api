@@ -33,6 +33,24 @@ class ListSchedulingSchema(BaseModel):
     """
     schedulings:List[SchedulingViewSchema]
 
+class SchedulingDelSchema(BaseModel):
+    """ Define como deve ser a estrutura do dado retornado após uma requisição
+        de remoção.
+    """
+    mesage: str
+
+class SchedulingSearchByIdSchema(BaseModel):
+    """ Define como deve ser a estrutura que representa a busca. Que será
+        feita apenas com base no id do agendamento.
+    """
+    id: int = 1
+
+class SchedulingSearchByDateSchema(BaseModel):
+    """ Define como deve ser a estrutura que representa a busca. Que será
+        feita apenas com base em uma data.
+    """
+    date_scheduling: str = "01/01/2023"
+
 def view_scheduling(scheduling: Scheduling):
     """ Retorna uma representação de um agendamento.
     """

@@ -1,5 +1,4 @@
 from flask_openapi3 import Tag
-from sqlalchemy.exc import IntegrityError
 
 from model import Scheduling
 from repository.scheduling_repository import SchedulingRepository
@@ -15,10 +14,6 @@ class SchedulingController():
         )
     
     def add_scheduling(self, form):
-        """Adiciona um novo agendamento à base de dados
-
-            Retorna uma representação do agendamento inserido.
-        """
         scheduling = Scheduling(
             patient_name=form.patient_name,
             date_scheduling=form.date_scheduling,
@@ -30,21 +25,20 @@ class SchedulingController():
             # chamando o repository para salvar o médico no banco de dados
             return self.__scheduling_repository.save(scheduling)
 
-        # except IntegrityError as e:
-        #     # retorna uma menssagem de IntegrityError caso o médico já esteja
-        #     # cadastrado na base de dados
-        #     error_msg = "O médico {} já esta cadastrado na dase de dados.".format(__scheduling_repository.name)
-        #     return {"mesage": error_msg}, 409
-
         except Exception as e:
             # retorna uma menssagem para erros genéricos
             error_msg = "Não foi possível realizar o agendamento do paciente {}, motivo: {}.".format(scheduling.patient_name, e)
             return {"mesage": error_msg}, 400
         
     def get_schedulings(self):
-        """Faz a busca por todos os médicos cadastrados
-
-        Retorna uma representação da listagem dos médicos.
-        """
-        # chamando o repository para buscar os médicos cadastrados no banco de dados
+        # chamando o repository para buscar os agendamentos cadastrados no banco de dados
         return self.__scheduling_repository.get_schedulings(Scheduling)
+    
+    def get_schedulings_by_date(self, query):
+        # chamando o repository para buscar os agendamentos 
+        # com base em uma determinada data
+        return self.__scheduling_repository.get_schedulings_by_date(Scheduling, query.date_scheduling)
+    
+    def del_scheduling(self, query):
+        # chama o repository e deleta um agendamento do banco de dados
+        return self.__scheduling_repository.delete(Scheduling, query.id)

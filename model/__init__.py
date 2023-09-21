@@ -19,10 +19,10 @@ if not os.path.exists(db_path):
 db_url = 'sqlite:///%s/apef.sqlite3' % db_path
 
 # Cria a engine de conexão com o banco
-engine = create_engine(db_url, echo=False)
+engine = create_engine(db_url, connect_args={"check_same_thread": False})
 
-# Instancia um criador de seção com o banco
-Session = sessionmaker(bind=engine)
+# Instancia um criador de sessão com o banco
+Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Verifica se o banco de dados já existe 
 if not database_exists(engine.url):
